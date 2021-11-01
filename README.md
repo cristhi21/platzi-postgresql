@@ -14,7 +14,7 @@ Instruido por: Oswaldo Rodríguez González
 3. Debes ingresar una clave muy segura y guardarla porque la vas a necesitar después. Luego hacemos clic en siguiente.
 4. Ingresar por el SQL shell Pgadmin
 5. Crear DB
-   ```
+   ```sql
    create database transporte_publico;
    ```
 6.  Cambiar de base de datos
@@ -25,7 +25,7 @@ Instruido por: Oswaldo Rodríguez González
 - https://www.youtube.com/watch?v=40uGNsi7ysc
 - https://www.tecmint.com/install-postgresql-and-pgadmin-in-ubuntu/
 
-[Instalacion con docker](https://platzi.com/tutoriales/2059-practico-sql/8833-pgadmin-y-postgres-con-docker-sin-instalacion-de-programas-ni-dependencias/)
+- [Instalacion con docker](https://platzi.com/tutoriales/2059-practico-sql/8833-pgadmin-y-postgres-con-docker-sin-instalacion-de-programas-ni-dependencias/)
 
 
 
@@ -33,60 +33,48 @@ Instruido por: Oswaldo Rodríguez González
 ## 4. Interacción con Postgres desde la Consola
 
 
+```sh
+# ENTRAR A LA CONSOLA DE POSTGRES
+psql -U postgres -W
 
-- ENTRAR A LA CONSOLA DE POSTGRES
-	
-	psql -U postgres -W
+# VER LOS COMANDOS \ DE POSTGRES
+\?
 
-- VER LOS COMANDOS \ DE POSTGRES
+# LISTAR TODAS LAS BASES DE DATOS
+\l
 
-	\?
+#VER LAS TABLAS DE UNA BASE DE DATOS
+\dt
+ 
+#CAMBIAR A OTRA BD
+\c nombre_BD
+ 
+# DESCRIBIR UNA TABLA
+\d nombre_tabla
 
-- LISTAR TODAS LAS BASES DE DATOS
+# VER TODOS LOS COMANDOS SQL
+\h
 
-	\l
+# VER COMO SE EJECTUA UN COMANDO SQL
+\h nombre_de_la_funcion
 
-- VER LAS TABLAS DE UNA BASE DE DATOS
+# CANCELAR TODO LO QUE HAY EN PANTALLA
+Ctrl + C
 
-	\dt
+# VER LA VERSION DE POSTGRES INSTALADA, IMPORTANTE PONER EL ';'
+SELECT version();
 
-- CAMBIAR A OTRA BD
+# VOLVER A EJECUTAR LA FUNCION REALIZADA ANTERIORMENTE
+\g
 
-	\c nombre_BD
+#INICIALIZAR EL CONTADOR DE TIEMPO PARA QUE LA CONSOLA TE DIGA EN CADA EJECUCION ¿CUANTO DEMORO EN EJECUTAR ESA FUNCION?
+\timing
 
-- DESCRIBIR UNA TABLA
+# LIMPIAR PANTALLA DE LA CONSOLA PSQL
+Ctrl + L
+```
 
-	\d nombre_tabla
-
-- VER TODOS LOS COMANDOS SQL
-
-	\h
-
-- VER COMO SE EJECTUA UN COMANDO SQL
-
-	\h nombre_de_la_funcion
-
-- CANCELAR TODO LO QUE HAY EN PANTALLA
-
-	Ctrl + C
-
-- VER LA VERSION DE POSTGRES INSTALADA, IMPORTANTE PONER EL ';'
-
-	SELECT version();
-
-- VOLVER A EJECUTAR LA FUNCION REALIZADA ANTERIORMENTE
-
-	\g
-
-- INICIALIZAR EL CONTADOR DE TIEMPO PARA QUE LA CONSOLA TE DIGA EN CADA EJECUCION ¿CUANTO DEMORO EN EJECUTAR ESA FUNCION?
-
-	\timing
-
-- LIMPIAR PANTALLA DE LA CONSOLA PSQL
-
-	Ctrl + L
-
-[ACCEDER A LA CONSOLA DE POSTGRES](https://tecnologiaenvivo.com/acceder-a-la-consola-de-postgres/)
+- [ACCEDER A LA CONSOLA DE POSTGRES](https://tecnologiaenvivo.com/acceder-a-la-consola-de-postgres/)
 
 
 ## 5. PgAdmin: Interacción con Postgres desde la Interfaz Gráfica
@@ -95,7 +83,7 @@ Servers -> add
 Tablespaces-> espacio en memoria fisico para guardar la bd, se puede conf. para que un disco quede en c y otro en d
 login/groups
 
-[pgAdmin](https://www.pgadmin.org/)
+- [Descargar pgAdmin](https://www.pgadmin.org/)
 
 
 OPCIONES DEL PANEL IZQUIERDO
@@ -108,7 +96,10 @@ OPCIONES DEL PANEL IZQUIERDO
   - Schemas: Informacion propia de la tabla, public es el predeterminado
 
 
-https://www.postgresqltutorial.com/introduction-to-postgresql-stored-procedures/
+### Introduction to PostgreSQL PL/pgSQL
+
+- [Introduction to PostgreSQL PL/pgSQL](https://www.postgresqltutorial.com/introduction-to-postgresql-stored-procedures/)
+
 
 
 
@@ -131,7 +122,7 @@ Los archivos de configuración son tres principales:
   - pg_ident.conf
 La ruta de los mismos depende del sistema Operarivo, para saber que que ruta estan, basta con hacer una Query
 
-```
+```sql
 SHOW config_file;
 ```
 
@@ -386,9 +377,9 @@ Ej:. mucha info en una tabla, si hacemos una consuta se hace recorrido de toda l
 LA TABLA TIENE UN ESPACIO EN MEMORIA
 Dos factores:
 
-	- Separacion fisica de datos: es pobsible guardar varias partes de la tabla en diferentes espacios de disco
+- Separacion fisica de datos: es pobsible guardar varias partes de la tabla en diferentes espacios de disco
 
-	- conserva la misma estructura logica: funciona haciendo el mismo select
+- conserva la misma estructura logica: funciona haciendo el mismo select
 
 Internamente: con el mismo nombre de la tabla le asigna a otras pequeñas tablas que tienen un rango definido
 
@@ -459,7 +450,7 @@ Creamos un ROLE (consultas -> lectura, insertar, actualizar)
 CREATE ROLE usuario_consulta;
 ```
 Mostrar todos los usuarios junto a sus atributos
-```
+```sh
 \dg
 ```
 
